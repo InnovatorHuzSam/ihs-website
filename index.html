@@ -1,0 +1,570 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Innovator HuzSam – Learn. Evolve. Innovate.</title>
+  <meta name="description" content="Innovator HuzSam (IHS) is a global online education and training organization offering languages, digital skills, career development, counselling and more." />
+
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+
+  <!-- AOS – Animate on Scroll -->
+  <link rel="stylesheet" href="https://unpkg.com/aos@2.3.4/dist/aos.css" />
+
+  <!-- Lottie Player Script -->
+  <script src="https://unpkg.com/@lottiefiles/lottie-player@latest/dist/lottie-player.js"></script>
+
+  <!-- Font Awesome Icons -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" />
+
+  <!-- Favicon -->
+  <link rel="icon" href="https://innovatorhuzsam.com/wp-content/uploads/2025/12/cropped-IHS-2D-Logo.png" />
+
+  <!-- Stylesheet -->
+  <link rel="stylesheet" href="assets/css/style.css" />
+</head>
+<body>
+
+<!-- ==================== HEADER ==================== -->
+<div class="nav-overlay"></div>
+<header class="header">
+  <div class="container">
+    <a href="index.html" class="logo">
+      <img src="https://innovatorhuzsam.com/wp-content/uploads/2025/12/cropped-IHS-2D-Logo.png" alt="IHS Logo" />
+      <span>Innovator HuzSam</span>
+    </a>
+
+    <nav class="nav" id="mainNav">
+      <a href="index.html" class="active">Home</a>
+      <div class="nav-dropdown">
+        <button class="nav-dropdown-toggle">Programs <i class="fa-solid fa-chevron-down chevron"></i></button>
+        <div class="nav-dropdown-menu">
+          <a href="services.html"><i class="fa-solid fa-layer-group"></i> Services</a>
+          <a href="membership-plans.html"><i class="fa-solid fa-credit-card"></i> Plans</a>
+          <a href="our-trainers.html"><i class="fa-solid fa-chalkboard-user"></i> Trainers</a>
+          <a href="resources.html"><i class="fa-solid fa-book-open"></i> Resources</a>
+        </div>
+      </div>
+      <div class="nav-dropdown">
+        <button class="nav-dropdown-toggle">About <i class="fa-solid fa-chevron-down chevron"></i></button>
+        <div class="nav-dropdown-menu">
+          <a href="about.html"><i class="fa-solid fa-building"></i> About Us</a>
+          <a href="success-stories.html"><i class="fa-solid fa-star"></i> Success Stories</a>
+          <a href="faqs.html"><i class="fa-solid fa-circle-question"></i> FAQs</a>
+        </div>
+      </div>
+      <div class="nav-dropdown">
+        <button class="nav-dropdown-toggle">Get Involved <i class="fa-solid fa-chevron-down chevron"></i></button>
+        <div class="nav-dropdown-menu">
+          <a href="sponsor-a-student.html"><i class="fa-solid fa-hand-holding-heart"></i> Sponsor a Student</a>
+          <a href="careers.html"><i class="fa-solid fa-briefcase"></i> Careers</a>
+          <a href="contact.html"><i class="fa-solid fa-envelope"></i> Contact</a>
+        </div>
+      </div>
+      <a href="contact.html" class="btn btn-primary btn-sm nav-cta">Get Started</a>
+    </nav>
+
+    <button class="theme-toggle" aria-label="Toggle dark mode" id="themeToggle">
+      <i class="fa-solid fa-sun icon-sun"></i>
+      <i class="fa-solid fa-moon icon-moon"></i>
+    </button>
+
+    <button class="hamburger" aria-label="Toggle navigation">
+      <span></span><span></span><span></span>
+    </button>
+  </div>
+</header>
+
+<!-- ==================== HERO ==================== -->
+<section class="hero">
+  <div class="container">
+    <div class="hero-content" data-aos="fade-right">
+      <p class="tagline">Learn. Evolve. Innovate.</p>
+      <h1>Empowering Learners From <span id="heroLocationText" class="hero-location-rotator">Around&nbsp;the&nbsp;Globe</span></h1>
+      <p>Innovator HuzSam (IHS) is a global online education and training organization that believes in practical learning, ethical growth, and long-term development for every individual.</p>
+      <div class="btn-group">
+        <a href="services.html" class="btn btn-primary btn-lg">Explore Services</a>
+        <a href="contact.html" class="btn btn-outline btn-lg">Book Free Trial</a>
+      </div>
+
+      <div class="hero-stats">
+        <div class="hero-stat">
+          <h3 data-count="50" data-suffix="+">0+</h3>
+          <p>Training Programs</p>
+        </div>
+        <div class="hero-stat">
+          <h3 data-count="20" data-suffix="+">0+</h3>
+          <p>Expert Trainers</p>
+        </div>
+        <div class="hero-stat">
+          <h3 data-count="10" data-suffix="+">0+</h3>
+          <p>Countries Served</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="hero-visual" data-aos="fade-left" data-aos-delay="200">
+      <div class="lottie-container" style="position: relative; width: 100%; aspect-ratio: 1/1;">
+        <lottie-player src="assets/lottie/ihs_hero.json" background="transparent" speed="1" style="width: 100%; height: 100%;" loop autoplay></lottie-player>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ==================== TRAINING AREAS ==================== -->
+<section class="section section--alt" id="training-areas">
+  <div class="container text-center">
+    <span class="section-label" data-aos="fade-up">What We Offer</span>
+    <h2 class="section-title" data-aos="fade-up">Our Training Areas</h2>
+    <p class="section-subtitle" data-aos="fade-up">Structured training programs designed to help you grow — from language fluency and digital skills to career development and personal wellbeing.</p>
+
+    <div class="grid grid-3" style="text-align:left;">
+      <div class="card" data-aos="fade-up" data-aos-delay="0">
+        <div class="card-icon"><i class="fa-solid fa-globe"></i></div>
+        <h3>Languages &amp; Communication</h3>
+        <p>English, Urdu, Hindi, Arabic, French, Bengali, Chinese — from basic to advanced fluency. IELTS, TOEFL &amp; PTE preparation included.</p>
+        <a href="services.html" class="btn btn-outline btn-sm">Learn More <i class="fa-solid fa-arrow-right"></i></a>
+      </div>
+
+      <div class="card" data-aos="fade-up" data-aos-delay="100">
+        <div class="card-icon"><i class="fa-solid fa-laptop-code"></i></div>
+        <h3>Digital &amp; AI Skills</h3>
+        <p>Practical digital skills training including AI tools, social media, content creation and modern technology essentials.</p>
+        <a href="services.html" class="btn btn-outline btn-sm">Learn More <i class="fa-solid fa-arrow-right"></i></a>
+      </div>
+
+      <div class="card" data-aos="fade-up" data-aos-delay="200">
+        <div class="card-icon"><i class="fa-solid fa-rocket"></i></div>
+        <h3>Career &amp; Professional Development</h3>
+        <p>CV writing, interview preparation, workplace communication, leadership and professional growth programs.</p>
+        <a href="services.html" class="btn btn-outline btn-sm">Learn More <i class="fa-solid fa-arrow-right"></i></a>
+      </div>
+
+      <div class="card" data-aos="fade-up" data-aos-delay="0">
+        <div class="card-icon"><i class="fa-solid fa-brain"></i></div>
+        <h3>Counselling &amp; Wellbeing</h3>
+        <p>Personalized counselling sessions, psychological wellbeing support, and mental health resources for balanced growth.</p>
+        <a href="services.html" class="btn btn-outline btn-sm">Learn More <i class="fa-solid fa-arrow-right"></i></a>
+      </div>
+
+      <div class="card" data-aos="fade-up" data-aos-delay="100">
+        <div class="card-icon"><i class="fa-solid fa-lightbulb"></i></div>
+        <h3>Personal Development</h3>
+        <p>Self-improvement, confidence building, communication skills, time management and goal setting programs.</p>
+        <a href="services.html" class="btn btn-outline btn-sm">Learn More <i class="fa-solid fa-arrow-right"></i></a>
+      </div>
+
+      <div class="card" data-aos="fade-up" data-aos-delay="200">
+        <div class="card-icon"><i class="fa-solid fa-coins"></i></div>
+        <h3>Business &amp; Entrepreneurship</h3>
+        <p>Earning skills, financial independence, business development, and entrepreneurship training for the modern world.</p>
+        <a href="services.html" class="btn btn-outline btn-sm">Learn More <i class="fa-solid fa-arrow-right"></i></a>
+      </div>
+    </div>
+
+    <div class="mt-4" data-aos="fade-up">
+      <a href="services.html" class="btn btn-primary">See All Training Areas <i class="fa-solid fa-arrow-right"></i></a>
+    </div>
+  </div>
+</section>
+
+<!-- ==================== WHY IHS ==================== -->
+<section class="section" id="why-ihs">
+  <div class="container">
+    <div class="two-col">
+      <div data-aos="fade-right">
+        <span class="section-label">Why Choose Us</span>
+        <h2 class="section-title">Why Innovator HuzSam?</h2>
+        <p>Our approach to learning is practical, ethical, and focused on long-term growth. We design every program around what truly helps learners — not trends, not theory alone — but real skills that make a difference.</p>
+        <ul class="icon-list">
+          <li>
+            <span class="icon-check"><i class="fa-solid fa-check"></i></span>
+            <span><strong>Practical Learning</strong> — Focus on real-world application, not just theory.</span>
+          </li>
+          <li>
+            <span class="icon-check"><i class="fa-solid fa-check"></i></span>
+            <span><strong>Ethical Approach</strong> — Honest, transparent, and learner-first methodology.</span>
+          </li>
+          <li>
+            <span class="icon-check"><i class="fa-solid fa-check"></i></span>
+            <span><strong>Flexible Scheduling</strong> — Learn at your own pace with customizable schedules.</span>
+          </li>
+          <li>
+            <span class="icon-check"><i class="fa-solid fa-check"></i></span>
+            <span><strong>Global Access</strong> — Online training accessible from anywhere in the world.</span>
+          </li>
+          <li>
+            <span class="icon-check"><i class="fa-solid fa-check"></i></span>
+            <span><strong>Expert Trainers</strong> — Experienced professionals dedicated to your growth.</span>
+          </li>
+        </ul>
+      </div>
+      <div data-aos="fade-left">
+        <lottie-player src="assets/lottie/Online%20Learning.json" background="transparent" speed="1" style="width: 100%; max-width: 440px; margin: auto;" loop autoplay></lottie-player>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ==================== LEARNING THAT FITS YOUR GOALS ==================== -->
+<section class="cta-banner" id="membership-cta">
+  <div class="container" data-aos="fade-up">
+    <h2>Learning That Fits Your Goals</h2>
+    <p>Our programs are flexible, structured, and aligned with your personal or professional objectives. Choose a membership plan that works for you and begin your journey today.</p>
+    <div class="btn-group">
+      <a href="membership-plans.html" class="btn btn-gold btn-lg">Explore Membership Options</a>
+      <a href="contact.html" class="btn btn-outline-white btn-lg">Talk to Us</a>
+    </div>
+  </div>
+</section>
+
+<!-- ==================== OUR TRAINERS (Preview) ==================== -->
+<section class="section" id="trainers-preview">
+  <div class="container text-center">
+    <span class="section-label" data-aos="fade-up">Our Team</span>
+    <h2 class="section-title" data-aos="fade-up">Meet Our Trainers</h2>
+    <p class="section-subtitle" data-aos="fade-up">Experienced professionals from diverse backgrounds, dedicated to helping you achieve your learning and development goals.</p>
+
+    <div class="grid grid-3">
+      <div class="card trainer-card" data-aos="fade-up" data-aos-delay="0">
+        <img src="assets/images/ihs%20staff/mina%20rehman.webp" alt="Mina Rahman Khan" loading="lazy" />
+        <h3>Mina Rahman Khan</h3>
+        <h4>English &amp; Communication Specialist</h4>
+        <p>Provides training in English language, communication skills, and exam preparation including IELTS, TOEFL, and PTE.</p>
+      </div>
+
+      <div class="card trainer-card" data-aos="fade-up" data-aos-delay="100">
+        <img src="assets/images/ihs%20staff/aroshi%20mishra.webp" alt="Arohi Mishra" loading="lazy" />
+        <h3>Arohi Mishra</h3>
+        <h4>Multilingual Language Trainer</h4>
+        <p>Supports learners in multiple languages with a focus on fluency, clarity, and real-world usage.</p>
+      </div>
+
+      <div class="card trainer-card" data-aos="fade-up" data-aos-delay="200">
+        <img src="assets/images/ihs%20staff/ahmad%20hussain.webp" alt="Ahmad Hussain" loading="lazy" />
+        <h3>Ahmad Hussain</h3>
+        <h4>Business &amp; Online Earning Trainer</h4>
+        <p>Guides learners in freelancing, online income, and foundational business skills.</p>
+      </div>
+
+      <div class="card trainer-card" data-aos="fade-up" data-aos-delay="0">
+        <img src="assets/images/ihs%20staff/dr%20dua.webp" alt="Dr. Dua" loading="lazy" />
+        <h3>Dr. Dua</h3>
+        <h4>Counselling &amp; Wellbeing Practitioner</h4>
+        <p>Provides supportive counselling and wellbeing sessions focused on emotional balance and personal growth.</p>
+      </div>
+
+      <div class="card trainer-card" data-aos="fade-up" data-aos-delay="100">
+        <img src="assets/images/ihs%20staff/syeda%20arifa%20rizvi.webp" alt="Syed Arifa Rizvi" loading="lazy" />
+        <h3>Syed Arifa Rizvi</h3>
+        <h4>Business &amp; Online Earning Trainer</h4>
+        <p>Guides learners in freelancing, online income, and foundational business skills.</p>
+      </div>
+
+      <div class="card trainer-card" data-aos="fade-up" data-aos-delay="200">
+        <img src="assets/images/ihs%20staff/arooj%20fatima.webp" alt="Arooj Fatima" loading="lazy" />
+        <h3>Arooj Fatima</h3>
+        <h4>AI &amp; Technology Trainer</h4>
+        <p>Guides learners in the practical use of AI tools and emerging technologies for work and daily tasks.</p>
+      </div>
+    </div>
+
+    <div class="mt-4" data-aos="fade-up">
+      <a href="our-trainers.html" class="btn btn-primary">Meet All Trainers <i class="fa-solid fa-arrow-right"></i></a>
+    </div>
+  </div>
+</section>
+
+<!-- ==================== RESOURCES & INSIGHTS ==================== -->
+<section class="section section--alt" id="resources-preview">
+  <div class="container">
+    <div class="two-col">
+      <div data-aos="fade-right">
+        <span class="section-label">Knowledge Hub</span>
+        <h2 class="section-title">Resources &amp; Insights</h2>
+        <p>We share practical knowledge, helpful articles, and learning tools designed to support your growth — both inside and outside our training programs.</p>
+        <p>From study tips to industry insights, our resources are crafted to keep you informed and motivated on your learning journey.</p>
+        <a href="resources.html" class="btn btn-primary mt-3">Explore Resources <i class="fa-solid fa-arrow-right"></i></a>
+      </div>
+      <div data-aos="fade-left">
+        <div class="card">
+          <div class="card-icon"><i class="fa-solid fa-book-open"></i></div>
+          <h3>Study Guides &amp; Tips</h3>
+          <p>Curated learning materials and strategies to help you make the most of every study session.</p>
+        </div>
+        <div class="card mt-3">
+          <div class="card-icon"><i class="fa-solid fa-bullseye"></i></div>
+          <h3>Career Insights</h3>
+          <p>Practical advice on career growth, interview preparation, and professional development opportunities.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ==================== SUCCESS STORIES ==================== -->
+<section class="section" id="success-stories">
+  <div class="container text-center">
+    <span class="section-label" data-aos="fade-up">Testimonials</span>
+    <h2 class="section-title" data-aos="fade-up">What Success Means to Us</h2>
+    <p class="section-subtitle" data-aos="fade-up">Success at IHS isn't about overnight results — it's about steady progress, improved understanding, and learners who feel confident in their abilities.</p>
+
+    <div class="grid grid-3">
+      <div class="card" data-aos="fade-up" data-aos-delay="0">
+        <p style="font-style:italic;">"IHS helped me build confidence in my English communication. The trainers were patient, professional and truly dedicated to my progress."</p>
+        <p class="fw-600 mb-0" style="color:var(--primary);">— Language Student</p>
+      </div>
+      <div class="card" data-aos="fade-up" data-aos-delay="100">
+        <p style="font-style:italic;">"The digital skills program opened new career doors for me. I now use AI tools confidently in my daily work and freelance projects."</p>
+        <p class="fw-600 mb-0" style="color:var(--primary);">— Digital Skills Student</p>
+      </div>
+      <div class="card" data-aos="fade-up" data-aos-delay="200">
+        <p style="font-style:italic;">"The career counselling sessions were incredibly valuable. I gained clarity about my goals and a practical roadmap to achieve them."</p>
+        <p class="fw-600 mb-0" style="color:var(--primary);">— Career Development Student</p>
+      </div>
+    </div>
+
+    <div class="mt-4" data-aos="fade-up">
+      <a href="success-stories.html" class="btn btn-outline">Read More Stories <i class="fa-solid fa-arrow-right"></i></a>
+    </div>
+  </div>
+</section>
+
+<!-- ==================== SPONSOR A STUDENT ==================== -->
+<section class="section section--brown" id="sponsor-cta">
+  <div class="container text-center" data-aos="fade-up">
+    <span class="section-label">Make a Difference</span>
+    <h2 class="section-title">Supporting Access to Learning</h2>
+    <p class="section-subtitle" style="color:rgba(255,255,255,.85);margin-inline:auto;">Through our Sponsor a Student initiative, you can help someone access quality training who may not be able to afford it on their own. Every contribution creates a real opportunity.</p>
+    <div class="btn-group" style="justify-content:center;">
+      <a href="sponsor-a-student.html" class="btn btn-gold btn-lg">Learn About Sponsorship</a>
+    </div>
+  </div>
+</section>
+
+<!-- ==================== FAQ (Preview) ==================== -->
+<section class="section section--alt" id="faq-preview">
+  <div class="container">
+    <div class="text-center">
+      <span class="section-label" data-aos="fade-up">Support</span>
+      <h2 class="section-title" data-aos="fade-up">Frequently Asked Questions</h2>
+      <p class="section-subtitle" data-aos="fade-up">Quick answers to common questions about our programs, membership, and how everything works.</p>
+    </div>
+
+    <div class="accordion" data-aos="fade-up">
+      <div class="accordion-item">
+        <div class="accordion-header">
+          <span>What is Innovator HuzSam (IHS)?</span>
+          <span class="accordion-icon"></span>
+        </div>
+        <div class="accordion-body">
+          <div class="accordion-body-inner">
+            Innovator HuzSam (IHS) is a global online education and training organization. We offer structured programs in languages, digital skills, career development, counselling, and more — all designed around practical learning and long-term growth.
+          </div>
+        </div>
+      </div>
+
+      <div class="accordion-item">
+        <div class="accordion-header">
+          <span>How do I get started with IHS?</span>
+          <span class="accordion-icon"></span>
+        </div>
+        <div class="accordion-body">
+          <div class="accordion-body-inner">
+            Getting started is simple. Browse our services to find a program that suits your goals, choose a membership plan, and reach out to us via the contact form or WhatsApp. We'll guide you through the enrollment process.
+          </div>
+        </div>
+      </div>
+
+      <div class="accordion-item">
+        <div class="accordion-header">
+          <span>Are sessions conducted online?</span>
+          <span class="accordion-icon"></span>
+        </div>
+        <div class="accordion-body">
+          <div class="accordion-body-inner">
+            Yes, all our training sessions are conducted online. This allows learners from around the world to access our programs from the comfort of their homes, with flexible scheduling options to suit different time zones.
+          </div>
+        </div>
+      </div>
+
+      <div class="accordion-item">
+        <div class="accordion-header">
+          <span>What languages do you teach?</span>
+          <span class="accordion-icon"></span>
+        </div>
+        <div class="accordion-body">
+          <div class="accordion-body-inner">
+            We offer training in English, Urdu, Hindi, Arabic, French, Bengali, and Chinese. We also provide exam preparation for IELTS, TOEFL, and PTE.
+          </div>
+        </div>
+      </div>
+
+      <div class="accordion-item">
+        <div class="accordion-header">
+          <span>Can I book a free trial session?</span>
+          <span class="accordion-icon"></span>
+        </div>
+        <div class="accordion-body">
+          <div class="accordion-body-inner">
+            Yes! We offer a free trial session so you can experience our teaching style and discuss your learning goals before committing. Simply fill out the contact form or message us on WhatsApp to arrange yours.
+          </div>
+        </div>
+      </div>
+
+      <div class="accordion-item">
+        <div class="accordion-header">
+          <span>Do you offer group or corporate training?</span>
+          <span class="accordion-icon"></span>
+        </div>
+        <div class="accordion-body">
+          <div class="accordion-body-inner">
+            Yes, we provide customized group and corporate training programs. Whether you need team-based language courses or organizational development workshops, we can tailor a program to meet your requirements.
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="text-center mt-4" data-aos="fade-up">
+      <a href="faqs.html" class="btn btn-outline">View All FAQs <i class="fa-solid fa-arrow-right"></i></a>
+    </div>
+  </div>
+</section>
+
+<!-- ==================== CONTACT / GET IN TOUCH ==================== -->
+<section class="section" id="contact">
+  <div class="container">
+    <div class="two-col">
+      <div data-aos="fade-right">
+        <span class="section-label">Get in Touch</span>
+        <h2 class="section-title">Ready to Begin Your Learning Journey?</h2>
+        <p>Fill in the form and our team will get back to you within 24 hours. You can also reach us directly via email or WhatsApp.</p>
+
+        <div class="mt-3">
+          <p><strong><i class="fa-regular fa-envelope"></i> Email:</strong> <a href="mailto:info@innovatorhuzsam.com" style="color:var(--primary);">info@innovatorhuzsam.com</a></p>
+          <p><strong><i class="fa-brands fa-whatsapp"></i> WhatsApp:</strong> <a href="https://wa.me/+923217975367" style="color:var(--primary);">+92 321 797 5367</a></p>
+        </div>
+      </div>
+
+      <div data-aos="fade-left">
+        <form class="form-card" data-validate>
+          <div class="form-group">
+            <label for="fullName">Full Name</label>
+            <input type="text" id="fullName" class="form-control" placeholder="Your full name" required />
+          </div>
+          <div class="form-group">
+            <label for="phone">Phone / WhatsApp</label>
+            <input type="tel" id="phone" class="form-control" placeholder="+92 xxx xxx xxxx" />
+          </div>
+          <div class="form-group">
+            <label for="email">Email Address</label>
+            <input type="email" id="email" class="form-control" placeholder="you@example.com" required />
+          </div>
+          <div class="form-group">
+            <label for="subject">Subject</label>
+            <select id="subject" class="form-control" required>
+              <option value="">Select a subject…</option>
+              <option>Language Training</option>
+              <option>Digital & AI Skills</option>
+              <option>Career Development</option>
+              <option>Counselling & Wellbeing</option>
+              <option>Membership Plans</option>
+              <option>Sponsor a Student</option>
+              <option>General Inquiry</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <label for="message">Message</label>
+            <textarea id="message" class="form-control" placeholder="Tell us about your goals or questions…" required></textarea>
+          </div>
+          <button type="submit" class="btn btn-primary btn-lg" style="width:100%;">Send Message</button>
+        </form>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ==================== FOOTER ==================== -->
+<footer class="footer">
+  <div class="container">
+    <div class="footer-grid">
+      <!-- Col 1: Brand -->
+      <div class="footer-brand">
+        <a href="index.html" class="logo">
+          <img src="https://innovatorhuzsam.com/wp-content/uploads/2025/12/cropped-IHS-2D-Logo.png" alt="IHS Logo" />
+          <span>Innovator HuzSam</span>
+        </a>
+        <p class="tagline-footer">Learn. Evolve. Innovate.</p>
+        <p>A global online education and training organization dedicated to practical learning and long-term growth.</p>
+        <div class="footer-socials">
+          <a href="https://youtube.com/channel/UClY2h7Q6HkYx2JkYkpymz6g" target="_blank" rel="noopener" aria-label="YouTube"><i class="fa-brands fa-youtube"></i></a>
+          <a href="https://wa.me/+923217975367" target="_blank" rel="noopener" aria-label="WhatsApp"><i class="fa-brands fa-whatsapp"></i></a>
+          <a href="https://facebook.com/InnovatorHuzSam/" target="_blank" rel="noopener" aria-label="Facebook"><i class="fa-brands fa-facebook-f"></i></a>
+          <a href="https://instagram.com/innovatorhuzsam/" target="_blank" rel="noopener" aria-label="Instagram"><i class="fa-brands fa-instagram"></i></a>
+        </div>
+      </div>
+
+      <!-- Col 2: Programs -->
+      <div>
+        <h4>Programs</h4>
+        <div class="footer-links">
+          <a href="services.html">Languages &amp; Communication</a>
+          <a href="services.html">Digital Trainings</a>
+          <a href="services.html">Earning Trainings</a>
+          <a href="services.html">AI Trainings</a>
+          <a href="services.html">Counselling &amp; Personal Dev</a>
+          <a href="services.html">Professional Dev &amp; Exam</a>
+        </div>
+      </div>
+
+      <!-- Col 3: Explore -->
+      <div>
+        <h4>Explore</h4>
+        <div class="footer-links">
+          <a href="about.html">About Us</a>
+          <a href="services.html">Services</a>
+          <a href="membership-plans.html">Membership Plans</a>
+          <a href="our-trainers.html">Our Trainers</a>
+          <a href="resources.html">Resources</a>
+          <a href="success-stories.html">Success Stories</a>
+          <a href="sponsor-a-student.html">Sponsor a Student</a>
+          <a href="careers.html">Careers</a>
+        </div>
+      </div>
+
+      <!-- Col 4: Contact -->
+      <div>
+        <h4>Contact</h4>
+        <div class="footer-links">
+          <a href="mailto:info@innovatorhuzsam.com">info@innovatorhuzsam.com</a>
+          <a href="https://wa.me/+923217975367">+92 321 797 5367</a>
+          <a href="contact.html">Contact Form</a>
+        </div>
+      </div>
+    </div>
+
+    <div class="footer-bottom">
+      <p>&copy; 2026 Innovator HuzSam. All rights reserved.</p>
+      <div class="footer-bottom-links">
+        <a href="faqs.html">FAQs</a>
+        <a href="terms-policies.html">Terms &amp; Policies</a>
+        <a href="privacy-policy.html">Privacy Policy</a>
+      </div>
+    </div>
+  </div>
+</footer>
+
+<!-- WhatsApp Floating Button -->
+<a href="https://wa.me/+923217975367" class="whatsapp-float" target="_blank" rel="noopener" aria-label="Chat on WhatsApp"><i class="fa-brands fa-whatsapp"></i></a>
+
+<!-- Back to Top -->
+<button class="back-to-top" aria-label="Back to top"><i class="fa-solid fa-arrow-up"></i></button>
+
+<!-- Scripts -->
+<script src="https://unpkg.com/aos@2.3.4/dist/aos.js"></script>
+<script src="assets/js/main.js"></script>
+</body>
+</html>
