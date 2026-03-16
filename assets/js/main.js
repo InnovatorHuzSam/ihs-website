@@ -287,7 +287,41 @@ document.addEventListener('DOMContentLoaded', () => {
     }, 1800);
   }
 
-  /* ---------- 11. Home WhatsApp Quick Options ---------- */
+  /* ---------- 11. Home Hero Image Slider ---------- */
+  const heroSlides = Array.from(document.querySelectorAll('.hero-slider .hero-slide'));
+  if (heroSlides.length > 1) {
+    let activeSlideIndex = Math.max(0, heroSlides.findIndex((slide) => slide.classList.contains('active')));
+    let isSliding = false;
+
+    const setActiveSlide = (nextIndex) => {
+      if (isSliding || nextIndex === activeSlideIndex) return;
+
+      const currentSlide = heroSlides[activeSlideIndex];
+      const nextSlide = heroSlides[nextIndex];
+      isSliding = true;
+
+      currentSlide.classList.remove('is-entering');
+      nextSlide.classList.remove('is-leaving');
+
+      currentSlide.classList.add('is-leaving');
+      nextSlide.classList.add('is-entering');
+
+      setTimeout(() => {
+        currentSlide.classList.remove('active', 'is-leaving');
+        nextSlide.classList.remove('is-entering');
+        nextSlide.classList.add('active');
+        activeSlideIndex = nextIndex;
+        isSliding = false;
+      }, 950);
+    };
+
+    setInterval(() => {
+      const nextIndex = (activeSlideIndex + 1) % heroSlides.length;
+      setActiveSlide(nextIndex);
+    }, 3400);
+  }
+
+  /* ---------- 12. Home WhatsApp Quick Options ---------- */
   const whatsappFloat = document.querySelector('.whatsapp-float');
 
   if (whatsappFloat) {
@@ -350,7 +384,7 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   }
 
-  /* ---------- 12. Terms TOC Active Link ---------- */
+  /* ---------- 13. Terms TOC Active Link ---------- */
   const legalTocLinks = Array.from(document.querySelectorAll('.legal-toc a[href^="#"]'));
   if (legalTocLinks.length) {
     const sections = legalTocLinks
