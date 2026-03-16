@@ -247,12 +247,10 @@ document.addEventListener('DOMContentLoaded', () => {
   const heroLocationText = document.getElementById('heroLocationText');
   if (heroLocationText) {
     const locations = [
-      { text: 'Gulf Countries', flagSrc: 'https://flagcdn.com/w40/ae.png', flagAlt: 'UAE flag' },
-      { text: 'Pakistan', flagSrc: 'https://flagcdn.com/w40/pk.png', flagAlt: 'Pakistan flag' },
-      { text: 'Bangladesh', flagSrc: 'https://flagcdn.com/w40/bd.png', flagAlt: 'Bangladesh flag' },
-      { text: 'India', flagSrc: 'https://flagcdn.com/w40/in.png', flagAlt: 'India flag' },
-      { text: 'Srilanka', flagSrc: 'https://flagcdn.com/w40/lk.png', flagAlt: 'Sri Lanka flag' },
-      { text: 'Around the Globe', iconType: 'globe' }
+      { text: 'Africa' },
+      { text: 'Asia' },
+      { text: 'Europe' },
+      { text: 'America' }
     ];
 
     const escapeHtml = (value) => value
@@ -271,14 +269,15 @@ document.addEventListener('DOMContentLoaded', () => {
       const iconDelay = entry.text.length * 26 + 40;
       const iconMarkup = entry.iconType === 'globe'
         ? `<span class="hero-location-icon" style="--d:${iconDelay}ms"><i class="fa-solid fa-globe" aria-hidden="true"></i></span>`
-        : `<span class="hero-location-icon" style="--d:${iconDelay}ms"><img src="${entry.flagSrc || ''}" alt="${escapeHtml(entry.flagAlt || '')}" loading="eager" decoding="async" /></span>`;
+        : entry.flagSrc
+          ? `<span class="hero-location-icon" style="--d:${iconDelay}ms"><img src="${entry.flagSrc}" alt="${escapeHtml(entry.flagAlt || '')}" loading="eager" decoding="async" /></span>`
+          : '';
 
       heroLocationText.setAttribute('aria-label', entry.text);
       heroLocationText.innerHTML = letters.join('') + iconMarkup;
     };
 
-    let locationIndex = locations.findIndex((entry) => entry.text === 'Around the Globe');
-    if (locationIndex < 0) locationIndex = 0;
+    let locationIndex = 0;
 
     renderLocationWord(locations[locationIndex]);
 
@@ -286,5 +285,131 @@ document.addEventListener('DOMContentLoaded', () => {
       locationIndex = (locationIndex + 1) % locations.length;
       renderLocationWord(locations[locationIndex]);
     }, 1800);
+  }
+
+  /* ---------- 11. Home WhatsApp Quick Options ---------- */
+  const whatsappFloat = document.querySelector('.whatsapp-float');
+
+  if (whatsappFloat) {
+    const popup = document.createElement('div');
+    popup.className = 'whatsapp-popup';
+    popup.setAttribute('aria-hidden', 'true');
+    popup.innerHTML = `
+      <button class="whatsapp-popup-close" type="button" aria-label="Close WhatsApp options">&times;</button>
+      <p class="whatsapp-popup-title">How can we help you?</p>
+      <div class="whatsapp-popup-options">
+        <a class="whatsapp-option" href="https://wa.me/923217975367?text=${encodeURIComponent('Hello, I want to learn more about training programs.')}">Want to learn more about training programs</a>
+        <a class="whatsapp-option" href="https://wa.me/923217975367?text=${encodeURIComponent('Hello, I want to book a trial class.')}">Want to book a trial class</a>
+      </div>
+    `;
+
+    document.body.appendChild(popup);
+
+    const closePopup = () => {
+      popup.classList.remove('open');
+      popup.setAttribute('aria-hidden', 'true');
+    };
+
+    const openPopup = () => {
+      popup.classList.add('open');
+      popup.setAttribute('aria-hidden', 'false');
+    };
+
+    whatsappFloat.addEventListener('click', (event) => {
+      event.preventDefault();
+      if (popup.classList.contains('open')) {
+        closePopup();
+      } else {
+        openPopup();
+      }
+    });
+
+    popup.addEventListener('click', (event) => {
+      const closeButton = event.target.closest('.whatsapp-popup-close');
+      if (closeButton) {
+        event.preventDefault();
+        closePopup();
+        return;
+      }
+
+      const option = event.target.closest('.whatsapp-option');
+      if (!option) return;
+      event.preventDefault();
+      closePopup();
+      window.open(option.href, '_blank', 'noopener');
+    });
+
+    document.addEventListener('click', (event) => {
+      if (!popup.classList.contains('open')) return;
+      if (popup.contains(event.target) || whatsappFloat.contains(event.target)) return;
+      closePopup();
+    });
+
+    document.addEventListener('keydown', (event) => {
+      if (event.key === 'Escape') closePopup();
+    });
+  }
+
+  /* ---------- 12. Terms TOC Active Link ---------- */
+  const legalTocLinks = Array.from(document.querySelectorAll('.legal-toc a[href^="#"]'));
+  if (legalTocLinks.length) {
+    const sections = legalTocLinks
+      .map((link) => document.querySelector(link.getAttribute('href')))
+      .filter(Boolean);
+
+    const setActiveTocLink = (id) => {
+      legalTocLinks.forEach((link) => {
+        const isActive = link.getAttribute('href') === `#${id}`;
+        link.classList.toggle('active', isActive);
+      });
+    };
+
+    const getActiveSectionId = () => {
+      const markerOffset = 160;
+      const positions = sections.map((section) => ({
+        id: section.id,
+        top: section.getBoundingClientRect().top
+      }));
+
+      const passed = positions.filter((item) => item.top - markerOffset <= 0);
+      if (passed.length) {
+        return passed[passed.length - 1].id;
+      }
+
+      return positions[0]?.id;
+    };
+
+    const updateActiveByScroll = () => {
+      const activeId = getActiveSectionId();
+      if (activeId) setActiveTocLink(activeId);
+    };
+
+    legalTocLinks.forEach((link) => {
+      link.addEventListener('click', (event) => {
+        const href = link.getAttribute('href');
+        const target = href ? document.querySelector(href) : null;
+        if (!target) return;
+
+        event.preventDefault();
+        const targetId = href.replace('#', '');
+        setActiveTocLink(targetId);
+
+        const top = target.getBoundingClientRect().top + window.scrollY - 120;
+        window.scrollTo({ top, behavior: 'smooth' });
+      });
+    });
+
+    let scrollTicking = false;
+    const handleScroll = () => {
+      if (scrollTicking) return;
+      scrollTicking = true;
+      requestAnimationFrame(() => {
+        updateActiveByScroll();
+        scrollTicking = false;
+      });
+    };
+
+    window.addEventListener('scroll', handleScroll, { passive: true });
+    updateActiveByScroll();
   }
 });
