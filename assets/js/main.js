@@ -5,10 +5,13 @@
 /* ---------- 0. Theme Initialization (runs immediately) ---------- */
 (function() {
   const saved = localStorage.getItem('ihs-theme');
-  if (saved) {
+  const explicitPreference = localStorage.getItem('ihs-theme-explicit') === '1';
+
+  if (explicitPreference && (saved === 'dark' || saved === 'light')) {
     document.documentElement.setAttribute('data-theme', saved);
-  } else if (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches) {
+  } else {
     document.documentElement.setAttribute('data-theme', 'dark');
+    localStorage.setItem('ihs-theme', 'dark');
   }
 })();
 
@@ -70,6 +73,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const next = current === 'dark' ? 'light' : 'dark';
     html.setAttribute('data-theme', next);
     localStorage.setItem('ihs-theme', next);
+    localStorage.setItem('ihs-theme-explicit', '1');
   });
 
   /* ---------- 2. Sticky Header ---------- */
@@ -129,29 +133,92 @@ document.addEventListener('DOMContentLoaded', () => {
 
   /* ---------- 5. Simple Form Validation ---------- */
   const forms = document.querySelectorAll('form[data-validate]');
+  const WHATSAPP_NUMBER = '923217975367';
 
   forms.forEach(form => {
     form.addEventListener('submit', (e) => {
+      e.preventDefault();
       let valid = true;
       const required = form.querySelectorAll('[required]');
+      const emailFields = form.querySelectorAll('input[type="email"]');
 
       required.forEach(field => {
         clearError(field);
         if (!field.value.trim()) {
           showError(field, 'This field is required.');
           valid = false;
-        } else if (field.type === 'email' && !isEmail(field.value)) {
+        }
+      });
+
+      emailFields.forEach(field => {
+        const value = field.value.trim();
+        if (!value) {
+          clearError(field);
+          return;
+        }
+        if (!isEmail(value)) {
           showError(field, 'Please enter a valid email address.');
           valid = false;
         }
       });
 
       if (!valid) {
-        e.preventDefault();
         // scroll to first error
         const firstErr = form.querySelector('.form-error');
         firstErr?.scrollIntoView({ behavior: 'smooth', block: 'center' });
+        return;
       }
+
+      const formTitle =
+        form.querySelector('h3')?.textContent.trim() ||
+        form.closest('section')?.querySelector('.section-title')?.textContent.trim() ||
+        'Website Inquiry';
+
+      const fields = Array.from(form.querySelectorAll('input, select, textarea'))
+        .filter((field) => {
+          if (field.disabled) return false;
+          if (field.tagName === 'INPUT' && ['hidden', 'submit', 'button', 'reset', 'file'].includes(field.type)) return false;
+          if (field.type === 'radio' && !field.checked) return false;
+          return true;
+        })
+        .map((field) => {
+          const groupLabel = field.closest('.form-group')?.querySelector('label')?.textContent.trim();
+          const byForLabel = field.id
+            ? form.querySelector(`label[for="${field.id}"]`)?.textContent.trim()
+            : '';
+          const label = byForLabel || groupLabel || field.name || field.id || 'Field';
+
+          let value = '';
+          if (field.tagName === 'SELECT') {
+            const selected = field.options[field.selectedIndex];
+            value = selected ? selected.textContent.trim() : '';
+            if (!field.value) value = '';
+          } else if (field.type === 'checkbox') {
+            value = field.checked ? 'Yes' : 'No';
+          } else {
+            value = field.value.trim();
+          }
+
+          return { label, value };
+        })
+        .filter((entry) => entry.value);
+
+      const messageLines = [
+        'Hello Innovator HuzSam,',
+        '',
+        `New inquiry from website form: ${formTitle}`,
+        '',
+        'Submitted details:'
+      ];
+
+      fields.forEach((entry) => {
+        messageLines.push(`- ${entry.label}: ${entry.value}`);
+      });
+
+      messageLines.push('', 'Please get back to me. Thank you.');
+
+      const whatsappUrl = `https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURIComponent(messageLines.join('\n'))}`;
+      window.location.href = whatsappUrl;
     });
   });
 
