@@ -135,6 +135,202 @@ document.addEventListener('DOMContentLoaded', () => {
   const forms = document.querySelectorAll('form[data-validate]');
   const WHATSAPP_NUMBER = '923217975367';
 
+  const countryDropdowns = document.querySelectorAll('.country-dropdown');
+  const countryCodeFallback = [
+    { name: 'Pakistan', code: '+92', iso2: 'pk' },
+    { name: 'India', code: '+91', iso2: 'in' },
+    { name: 'Bangladesh', code: '+880', iso2: 'bd' },
+    { name: 'United Kingdom', code: '+44', iso2: 'gb' },
+    { name: 'United States', code: '+1', iso2: 'us' },
+    { name: 'Canada', code: '+1', iso2: 'ca' },
+    { name: 'United Arab Emirates', code: '+971', iso2: 'ae' },
+    { name: 'Saudi Arabia', code: '+966', iso2: 'sa' },
+    { name: 'Qatar', code: '+974', iso2: 'qa' },
+    { name: 'Kuwait', code: '+965', iso2: 'kw' },
+    { name: 'Australia', code: '+61', iso2: 'au' },
+    { name: 'Germany', code: '+49', iso2: 'de' }
+  ];
+
+  const getFlagSources = (iso2 = '') => {
+    const iso = (iso2 || '').toLowerCase();
+    const isoUpper = iso.toUpperCase();
+    if (!iso) return [];
+    return [
+      `https://flagcdn.com/w20/${iso}.png`,
+      `https://flagsapi.com/${isoUpper}/flat/32.png`,
+      `https://purecatamphetamine.github.io/country-flag-icons/3x2/${isoUpper}.svg`
+    ];
+  };
+
+  const applyFlagWithFallback = (img, iso2, countryName = 'Country') => {
+    if (!img) return;
+    const sources = getFlagSources(iso2);
+    if (!sources.length) return;
+
+    let sourceIndex = 0;
+    img.alt = `${countryName} flag`;
+    img.loading = 'eager';
+    img.decoding = 'async';
+
+    img.onerror = () => {
+      sourceIndex += 1;
+      if (sourceIndex < sources.length) {
+        img.src = sources[sourceIndex];
+      }
+    };
+
+    img.src = sources[0];
+  };
+
+  const renderCountryCodeOptions = (items) => {
+    if (!countryDropdowns.length) return;
+
+    const sortedItems = [...items].sort((a, b) => a.name.localeCompare(b.name));
+
+    const closeAllCountryDropdowns = () => {
+      countryDropdowns.forEach((dropdown) => {
+        dropdown.classList.remove('open');
+        dropdown.querySelector('.country-dropdown-toggle')?.setAttribute('aria-expanded', 'false');
+        dropdown.querySelector('.country-dropdown-menu')?.setAttribute('aria-hidden', 'true');
+      });
+    };
+
+    countryDropdowns.forEach((dropdown) => {
+      const preferredCode = dropdown.dataset.defaultCode || '+92';
+      const hiddenField = dropdown.querySelector('.country-code-value');
+      const toggle = dropdown.querySelector('.country-dropdown-toggle');
+      const menu = dropdown.querySelector('.country-dropdown-menu');
+      const searchInput = dropdown.querySelector('.country-dropdown-search');
+      const optionsContainer = dropdown.querySelector('.country-dropdown-options');
+      const selectedFlag = toggle?.querySelector('.country-flag-icon');
+      const selectedLabel = toggle?.querySelector('.country-dropdown-label');
+
+      if (!hiddenField || !toggle || !menu || !searchInput || !optionsContainer || !selectedFlag || !selectedLabel) return;
+
+      const priorValue = hiddenField.value || preferredCode;
+      const hasPrior = sortedItems.some((item) => item.code === priorValue);
+      const activeCode = hasPrior
+        ? priorValue
+        : (sortedItems.some((item) => item.code === preferredCode) ? preferredCode : (sortedItems[0]?.code || ''));
+
+      hiddenField.value = activeCode;
+
+      const buildOptions = (filter = '') => {
+        const q = filter.trim().toLowerCase();
+        const filtered = q
+          ? sortedItems.filter((item) => `${item.name} ${item.code}`.toLowerCase().includes(q))
+          : sortedItems;
+
+        optionsContainer.innerHTML = filtered.map((item) => {
+          const isActive = item.code === hiddenField.value ? ' is-active' : '';
+          const sources = getFlagSources(item.iso2);
+          const primary = sources[0] || '';
+          const fallbackOne = sources[1] || '';
+          const fallbackTwo = sources[2] || '';
+          return `
+            <button type="button" class="country-dropdown-option${isActive}" data-code="${item.code}" data-name="${item.name}" data-iso2="${item.iso2}">
+              <img src="${primary}" alt="${item.name} flag" class="country-flag-icon" data-fallback-one="${fallbackOne}" data-fallback-two="${fallbackTwo}" onerror="if(this.dataset.fallbackOne){this.src=this.dataset.fallbackOne;this.dataset.fallbackOne='';return;} if(this.dataset.fallbackTwo){this.src=this.dataset.fallbackTwo;this.dataset.fallbackTwo='';return;}" loading="eager" decoding="async" />
+              <span>${item.name} (${item.code})</span>
+            </button>
+          `;
+        }).join('');
+      };
+
+      const syncSelected = () => {
+        const selected = sortedItems.find((item) => item.code === hiddenField.value) || sortedItems[0];
+        if (!selected) return;
+        hiddenField.value = selected.code;
+        applyFlagWithFallback(selectedFlag, selected.iso2, selected.name);
+        selectedLabel.textContent = `${selected.name} (${selected.code})`;
+      };
+
+      buildOptions();
+      syncSelected();
+
+      toggle.addEventListener('click', (event) => {
+        event.preventDefault();
+        const isOpen = dropdown.classList.contains('open');
+        closeAllCountryDropdowns();
+        if (!isOpen) {
+          dropdown.classList.add('open');
+          toggle.setAttribute('aria-expanded', 'true');
+          menu.setAttribute('aria-hidden', 'false');
+          searchInput.focus();
+        }
+      });
+
+      searchInput.addEventListener('input', () => {
+        buildOptions(searchInput.value);
+      });
+
+      optionsContainer.addEventListener('click', (event) => {
+        const option = event.target.closest('.country-dropdown-option');
+        if (!option) return;
+
+        hiddenField.value = option.dataset.code || hiddenField.value;
+        syncSelected();
+        buildOptions(searchInput.value);
+        dropdown.classList.remove('open');
+        toggle.setAttribute('aria-expanded', 'false');
+        menu.setAttribute('aria-hidden', 'true');
+      });
+    });
+
+    document.addEventListener('click', (event) => {
+      const targetDropdown = event.target.closest('.country-dropdown');
+      if (!targetDropdown) closeAllCountryDropdowns();
+    });
+
+    document.addEventListener('keydown', (event) => {
+      if (event.key === 'Escape') closeAllCountryDropdowns();
+    });
+  };
+
+  const getAllCountryCodes = async () => {
+    if (!countryDropdowns.length) return;
+
+    try {
+      const response = await fetch('https://restcountries.com/v3.1/all?fields=name,idd,cca2', {
+        headers: { Accept: 'application/json' }
+      });
+
+      if (!response.ok) throw new Error(`Country API failed: ${response.status}`);
+
+      const countries = await response.json();
+      const map = new Map();
+
+      countries.forEach((country) => {
+        const root = country?.idd?.root;
+        const suffixes = Array.isArray(country?.idd?.suffixes) ? country.idd.suffixes : [];
+        const name = country?.name?.common;
+        const iso2 = country?.cca2 ? country.cca2.toLowerCase() : '';
+
+        if (!root || !suffixes.length || !name || !iso2) return;
+
+        suffixes.forEach((suffix) => {
+          const code = `${root}${suffix}`;
+          const key = `${name}-${code}`;
+          if (!map.has(key)) {
+            map.set(key, {
+              name,
+              code,
+              iso2
+            });
+          }
+        });
+      });
+
+      const allCountryCodes = Array.from(map.values());
+      if (!allCountryCodes.length) throw new Error('No country code data available');
+
+      renderCountryCodeOptions(allCountryCodes);
+    } catch (error) {
+      renderCountryCodeOptions(countryCodeFallback);
+    }
+  };
+
+  getAllCountryCodes();
+
   forms.forEach(form => {
     form.addEventListener('submit', (e) => {
       e.preventDefault();
@@ -182,6 +378,16 @@ document.addEventListener('DOMContentLoaded', () => {
           return true;
         })
         .map((field) => {
+          if (field.classList.contains('phone-number-input')) {
+            const countryCode = field.closest('.phone-input-group')?.querySelector('.country-code-value')?.value?.trim() || '';
+            const phoneNumber = field.value.trim();
+            if (!phoneNumber) return null;
+
+            const groupLabel = field.closest('.form-group')?.querySelector('label')?.textContent.trim() || 'Phone / WhatsApp';
+            const fullPhone = `${countryCode} ${phoneNumber}`.trim();
+            return { label: groupLabel, value: fullPhone };
+          }
+
           const groupLabel = field.closest('.form-group')?.querySelector('label')?.textContent.trim();
           const byForLabel = field.id
             ? form.querySelector(`label[for="${field.id}"]`)?.textContent.trim()
@@ -201,7 +407,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
           return { label, value };
         })
-        .filter((entry) => entry.value);
+        .filter((entry) => entry && entry.value);
 
       const messageLines = [
         'Hello Innovator HuzSam,',
@@ -314,6 +520,7 @@ document.addEventListener('DOMContentLoaded', () => {
   const heroLocationText = document.getElementById('heroLocationText');
   if (heroLocationText) {
     const locations = [
+      { text: 'Around The Globe' },
       { text: 'Africa' },
       { text: 'Asia' },
       { text: 'Europe' },

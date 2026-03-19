@@ -6,12 +6,12 @@
   <title>Innovator HuzSam – Learn. Evolve. Innovate.</title>
   <meta name="description" content="Innovator HuzSam (IHS) is a global online education and training organization offering languages, digital skills, career development, counselling and more." />
   <meta name="robots" content="index, follow" />
-  <link rel="canonical" href="https://innovatorhuzsam.com/index.html" />
+  <link rel="canonical" href="https://innovatorhuzsam.com/" />
   <meta property="og:type" content="website" />
   <meta property="og:site_name" content="Innovator HuzSam" />
   <meta property="og:title" content="Innovator HuzSam – Learn. Evolve. Innovate." />
   <meta property="og:description" content="Innovator HuzSam (IHS) is a global online education and training organization offering languages, digital skills, career development, counselling and more." />
-  <meta property="og:url" content="https://innovatorhuzsam.com/index.html" />
+  <meta property="og:url" content="https://innovatorhuzsam.com/" />
   <meta property="og:image" content="https://innovatorhuzsam.com/assets/images/Logo.webp" />
   <meta name="twitter:card" content="summary_large_image" />
   <meta name="twitter:title" content="Innovator HuzSam – Learn. Evolve. Innovate." />
@@ -22,7 +22,7 @@
     "@context": "https://schema.org",
     "@graph": [
       {
-        "@type": "Organization",
+        "@type": "EducationalOrganization",
         "@id": "https://innovatorhuzsam.com/#organization",
         "name": "Innovator HuzSam",
         "url": "https://innovatorhuzsam.com/",
@@ -47,11 +47,10 @@
       },
       {
         "@type": "WebPage",
-        "@id": "https://innovatorhuzsam.com/index.html#webpage",
-        "url": "https://innovatorhuzsam.com/index.html",
+        "@id": "https://innovatorhuzsam.com/#webpage",
+        "url": "https://innovatorhuzsam.com/",
         "name": "Innovator HuzSam – Learn. Evolve. Innovate.",
-        "description": "Innovator HuzSam (IHS) is a global online education and training organization offering languages, digital skills, career development, counselling and more.",
-        "isPartOf": {
+        "description": "Innovator HuzSam (IHS) is a global online education and training organization offering languages, digital skills, career development, counselling and more.", "dateModified": "2026-03-19", "isPartOf": {
           "@id": "https://innovatorhuzsam.com/#website"
         },
         "about": {
@@ -81,8 +80,34 @@
 
   <!-- Stylesheet -->
   <link rel="stylesheet" href="assets/css/style.css" />
+
+  <!-- Google Analytics (GA4) -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-ZHHYR92JKK"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-ZHHYR92JKK');
+  </script>
+  <!-- Meta Pixel Code -->
+  <script>
+    !function(f,b,e,v,n,t,s)
+    {if(f.fbq)return;n=f.fbq=function(){n.callMethod?
+    n.callMethod.apply(n,arguments):n.queue.push(arguments)};
+    if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';
+    n.queue=[];t=b.createElement(e);t.async=!0;
+    t.src=v;s=b.getElementsByTagName(e)[0];
+    s.parentNode.insertBefore(t,s)}(window, document,'script',
+    'https://connect.facebook.net/en_US/fbevents.js');
+    fbq('init', '968002505564294');
+    fbq('track', 'PageView');
+  </script>
+  <!-- End Meta Pixel Code -->
 </head>
 <body>
+<noscript><img height="1" width="1" style="display:none"
+src="https://www.facebook.com/tr?id=968002505564294&ev=PageView&noscript=1"
+/></noscript>
 
 <!-- ==================== HEADER ==================== -->
 <div class="nav-overlay"></div>
@@ -529,7 +554,21 @@
           </div>
           <div class="form-group">
             <label for="phone">Phone / WhatsApp</label>
-            <input type="tel" id="phone" class="form-control" placeholder="+92 xxx xxx xxxx" />
+            <div class="phone-input-group">
+              <div class="country-dropdown" data-default-code="+92">
+                <input type="hidden" class="country-code-value" value="+92" />
+                <button type="button" class="country-dropdown-toggle" aria-label="Select country code" aria-expanded="false">
+                  <img alt="Pakistan flag" class="country-flag-icon" />
+                  <span class="country-dropdown-label">Pakistan (+92)</span>
+                  <i class="fa-solid fa-chevron-down" aria-hidden="true"></i>
+                </button>
+                <div class="country-dropdown-menu" aria-hidden="true">
+                  <input type="text" class="form-control country-dropdown-search" placeholder="Search country..." aria-label="Search country" />
+                  <div class="country-dropdown-options"></div>
+                </div>
+              </div>
+              <input type="tel" id="phone" class="form-control phone-number-input" placeholder="Phone number" inputmode="tel" autocomplete="tel-national" />
+            </div>
           </div>
           <div class="form-group">
             <label for="email">Email Address</label>

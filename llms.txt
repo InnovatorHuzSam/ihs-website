@@ -1,0 +1,29 @@
+# Innovator HuzSam
+
+Official website for Innovator HuzSam (IHS), a global online education and training organization focused on practical learning, ethical growth, and long-term development.
+
+## What we offer
+- Language and communication training
+- Digital and AI skills training
+- Career and professional development
+- Counselling and wellbeing support
+- Personal development programs
+- Business and entrepreneurship learning
+
+## Key pages
+- https://innovatorhuzsam.com/
+- https://innovatorhuzsam.com/services.html
+- https://innovatorhuzsam.com/membership-plans.html
+- https://innovatorhuzsam.com/our-trainers.html
+- https://innovatorhuzsam.com/resources.html
+- https://innovatorhuzsam.com/online-tuition.html
+- https://innovatorhuzsam.com/faqs.html
+- https://innovatorhuzsam.com/success-stories.html
+- https://innovatorhuzsam.com/contact.html
+
+## Data usage
+Content may be quoted or summarized with attribution to Innovator HuzSam.
+
+## Freshness
+For page update timestamps, use the XML sitemap:
+https://innovatorhuzsam.com/sitemap.xml

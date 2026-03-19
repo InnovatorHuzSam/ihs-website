@@ -21,9 +21,64 @@
   {
     "@context": "https://schema.org",
     "@graph": [
-      { "@type": "Organization", "@id": "https://innovatorhuzsam.com/#organization", "name": "Innovator HuzSam", "url": "https://innovatorhuzsam.com/", "logo": { "@type": "ImageObject", "url": "https://innovatorhuzsam.com/assets/images/Logo.webp" } },
+      { "@type": "EducationalOrganization", "@id": "https://innovatorhuzsam.com/#organization", "name": "Innovator HuzSam", "url": "https://innovatorhuzsam.com/", "logo": { "@type": "ImageObject", "url": "https://innovatorhuzsam.com/assets/images/Logo.webp" } },
       { "@type": "WebSite", "@id": "https://innovatorhuzsam.com/#website", "url": "https://innovatorhuzsam.com/", "name": "Innovator HuzSam" },
-      { "@type": "WebPage", "@id": "https://innovatorhuzsam.com/faqs.html#webpage", "url": "https://innovatorhuzsam.com/faqs.html", "name": "FAQs – Innovator HuzSam", "description": "Frequently Asked Questions about Innovator HuzSam — programs, memberships, sessions, payments, certificates, and more.", "isPartOf": { "@id": "https://innovatorhuzsam.com/#website" }, "about": { "@id": "https://innovatorhuzsam.com/#organization" } }
+      { "@type": "WebPage", "@id": "https://innovatorhuzsam.com/faqs.html#webpage", "url": "https://innovatorhuzsam.com/faqs.html", "name": "FAQs – Innovator HuzSam", "description": "Frequently Asked Questions about Innovator HuzSam — programs, memberships, sessions, payments, certificates, and more.", "dateModified": "2026-03-19", "isPartOf": { "@id": "https://innovatorhuzsam.com/#website" }, "about": { "@id": "https://innovatorhuzsam.com/#organization" } },
+      {
+        "@type": "FAQPage",
+        "@id": "https://innovatorhuzsam.com/faqs.html#faq",
+        "url": "https://innovatorhuzsam.com/faqs.html",
+        "mainEntity": [
+          {
+            "@type": "Question",
+            "name": "What is Innovator HuzSam?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Innovator HuzSam is an organization that helps people achieve their goals through practical, real-world training and guidance."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "What courses does Innovator HuzSam offer?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "We offer training in languages, communication skills, digital skills, career development, personal development, and other practical programs designed for real-world use."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "Are all trainings conducted online?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Yes, all trainings are delivered online, allowing flexible learning from anywhere."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "Who can join your training programs?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Anyone can join our training programs. Our courses are suitable for students, professionals, and individuals seeking personal or professional growth."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "How can I get started?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "You can get started by choosing a membership plan or contacting us through the Contact page or WhatsApp for guidance."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "Do you provide customized or one-to-one training?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Yes, we offer personalized training, including one-to-one and small group sessions."
+            }
+          }
+        ]
+      }
     ]
   }
   </script>
@@ -37,8 +92,33 @@
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" />
   <link rel="icon" href="https://innovatorhuzsam.com/wp-content/uploads/2025/12/cropped-IHS-2D-Logo.png" />
   <link rel="stylesheet" href="assets/css/style.css" />
+  <!-- Google Analytics (GA4) -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-ZHHYR92JKK"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-ZHHYR92JKK');
+  </script>
+  <!-- Meta Pixel Code -->
+  <script>
+    !function(f,b,e,v,n,t,s)
+    {if(f.fbq)return;n=f.fbq=function(){n.callMethod?
+    n.callMethod.apply(n,arguments):n.queue.push(arguments)};
+    if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';
+    n.queue=[];t=b.createElement(e);t.async=!0;
+    t.src=v;s=b.getElementsByTagName(e)[0];
+    s.parentNode.insertBefore(t,s)}(window, document,'script',
+    'https://connect.facebook.net/en_US/fbevents.js');
+    fbq('init', '968002505564294');
+    fbq('track', 'PageView');
+  </script>
+  <!-- End Meta Pixel Code -->
 </head>
 <body>
+<noscript><img height="1" width="1" style="display:none"
+src="https://www.facebook.com/tr?id=968002505564294&ev=PageView&noscript=1"
+/></noscript>
 
 <!-- HEADER -->
 <div class="nav-overlay"></div>

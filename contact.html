@@ -21,9 +21,9 @@
   {
     "@context": "https://schema.org",
     "@graph": [
-      { "@type": "Organization", "@id": "https://innovatorhuzsam.com/#organization", "name": "Innovator HuzSam", "url": "https://innovatorhuzsam.com/", "logo": { "@type": "ImageObject", "url": "https://innovatorhuzsam.com/assets/images/Logo.webp" } },
+      { "@type": "EducationalOrganization", "@id": "https://innovatorhuzsam.com/#organization", "name": "Innovator HuzSam", "url": "https://innovatorhuzsam.com/", "logo": { "@type": "ImageObject", "url": "https://innovatorhuzsam.com/assets/images/Logo.webp" } },
       { "@type": "WebSite", "@id": "https://innovatorhuzsam.com/#website", "url": "https://innovatorhuzsam.com/", "name": "Innovator HuzSam" },
-      { "@type": "WebPage", "@id": "https://innovatorhuzsam.com/contact.html#webpage", "url": "https://innovatorhuzsam.com/contact.html", "name": "Contact Us – Innovator HuzSam", "description": "Get in touch with Innovator HuzSam. Contact us via form, email or WhatsApp for inquiries about training, memberships, or partnerships.", "isPartOf": { "@id": "https://innovatorhuzsam.com/#website" }, "about": { "@id": "https://innovatorhuzsam.com/#organization" } }
+      { "@type": "WebPage", "@id": "https://innovatorhuzsam.com/contact.html#webpage", "url": "https://innovatorhuzsam.com/contact.html", "name": "Contact Us – Innovator HuzSam", "description": "Get in touch with Innovator HuzSam. Contact us via form, email or WhatsApp for inquiries about training, memberships, or partnerships.", "dateModified": "2026-03-19", "isPartOf": { "@id": "https://innovatorhuzsam.com/#website" }, "about": { "@id": "https://innovatorhuzsam.com/#organization" } }
     ]
   }
   </script>
@@ -37,8 +37,33 @@
   <link rel="icon" href="https://innovatorhuzsam.com/wp-content/uploads/2025/12/cropped-IHS-2D-Logo.png" />
   <link rel="stylesheet" href="assets/css/style.css" />
   <script src="https://unpkg.com/@lottiefiles/lottie-player@latest/dist/lottie-player.js"></script>
+  <!-- Google Analytics (GA4) -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-ZHHYR92JKK"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-ZHHYR92JKK');
+  </script>
+  <!-- Meta Pixel Code -->
+  <script>
+    !function(f,b,e,v,n,t,s)
+    {if(f.fbq)return;n=f.fbq=function(){n.callMethod?
+    n.callMethod.apply(n,arguments):n.queue.push(arguments)};
+    if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';
+    n.queue=[];t=b.createElement(e);t.async=!0;
+    t.src=v;s=b.getElementsByTagName(e)[0];
+    s.parentNode.insertBefore(t,s)}(window, document,'script',
+    'https://connect.facebook.net/en_US/fbevents.js');
+    fbq('init', '968002505564294');
+    fbq('track', 'PageView');
+  </script>
+  <!-- End Meta Pixel Code -->
 </head>
 <body>
+<noscript><img height="1" width="1" style="display:none"
+src="https://www.facebook.com/tr?id=968002505564294&ev=PageView&noscript=1"
+/></noscript>
 
 <!-- HEADER -->
 <div class="nav-overlay"></div>
@@ -152,7 +177,21 @@
           </div>
           <div class="form-group">
             <label for="contactPhone">Phone / WhatsApp</label>
-            <input type="tel" id="contactPhone" class="form-control" placeholder="+92 xxx xxx xxxx" />
+            <div class="phone-input-group">
+              <div class="country-dropdown" data-default-code="+92">
+                <input type="hidden" class="country-code-value" value="+92" />
+                <button type="button" class="country-dropdown-toggle" aria-label="Select country code" aria-expanded="false">
+                  <img alt="Pakistan flag" class="country-flag-icon" />
+                  <span class="country-dropdown-label">Pakistan (+92)</span>
+                  <i class="fa-solid fa-chevron-down" aria-hidden="true"></i>
+                </button>
+                <div class="country-dropdown-menu" aria-hidden="true">
+                  <input type="text" class="form-control country-dropdown-search" placeholder="Search country..." aria-label="Search country" />
+                  <div class="country-dropdown-options"></div>
+                </div>
+              </div>
+              <input type="tel" id="contactPhone" class="form-control phone-number-input" placeholder="Phone number" inputmode="tel" autocomplete="tel-national" />
+            </div>
           </div>
           <div class="form-group">
             <label for="contactEmail">Email Address</label>
