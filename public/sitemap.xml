@@ -3,58 +3,72 @@
 
   <url>
     <loc>https://innovatorhuzsam.com/</loc>
+    <priority>1.0</priority>
   </url>
 
   <url>
-    <loc>https://innovatorhuzsam.com/services.html</loc>
+    <loc>https://innovatorhuzsam.com/services</loc>
+    <priority>0.9</priority>
   </url>
 
   <url>
-    <loc>https://innovatorhuzsam.com/membership-plans.html</loc>
+    <loc>https://innovatorhuzsam.com/membership-plans</loc>
+    <priority>0.9</priority>
   </url>
 
   <url>
-    <loc>https://innovatorhuzsam.com/our-trainers.html</loc>
+    <loc>https://innovatorhuzsam.com/our-trainers</loc>
+    <priority>0.8</priority>
   </url>
 
   <url>
-    <loc>https://innovatorhuzsam.com/resources.html</loc>
+    <loc>https://innovatorhuzsam.com/resources</loc>
+    <priority>0.8</priority>
   </url>
 
   <url>
-    <loc>https://innovatorhuzsam.com/online-tuition.html</loc>
+    <loc>https://innovatorhuzsam.com/online-tuition</loc>
+    <priority>0.9</priority>
   </url>
 
   <url>
-    <loc>https://innovatorhuzsam.com/sponsor-a-student.html</loc>
+    <loc>https://innovatorhuzsam.com/sponsor-a-student</loc>
+    <priority>0.7</priority>
   </url>
 
   <url>
-    <loc>https://innovatorhuzsam.com/careers.html</loc>
+    <loc>https://innovatorhuzsam.com/careers</loc>
+    <priority>0.7</priority>
   </url>
 
   <url>
-    <loc>https://innovatorhuzsam.com/about.html</loc>
+    <loc>https://innovatorhuzsam.com/about</loc>
+    <priority>0.8</priority>
   </url>
 
   <url>
-    <loc>https://innovatorhuzsam.com/success-stories.html</loc>
+    <loc>https://innovatorhuzsam.com/success-stories</loc>
+    <priority>0.9</priority>
   </url>
 
   <url>
-    <loc>https://innovatorhuzsam.com/faqs.html</loc>
+    <loc>https://innovatorhuzsam.com/faqs</loc>
+    <priority>0.7</priority>
   </url>
 
   <url>
-    <loc>https://innovatorhuzsam.com/contact.html</loc>
+    <loc>https://innovatorhuzsam.com/contact</loc>
+    <priority>0.9</priority>
   </url>
 
   <url>
-    <loc>https://innovatorhuzsam.com/terms-policies.html</loc>
+    <loc>https://innovatorhuzsam.com/terms-policies</loc>
+    <priority>0.5</priority>
   </url>
 
   <url>
-    <loc>https://innovatorhuzsam.com/privacy-policy.html</loc>
+    <loc>https://innovatorhuzsam.com/privacy-policy</loc>
+    <priority>0.5</priority>
   </url>
 
 </urlset>
