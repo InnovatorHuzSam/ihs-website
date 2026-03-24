@@ -134,6 +134,31 @@ document.addEventListener('DOMContentLoaded', () => {
   /* ---------- 5. Simple Form Validation ---------- */
   const forms = document.querySelectorAll('form[data-validate]');
   const WHATSAPP_NUMBER = '923217975367';
+  const META_CONTACT_ONCLICK = "fbq('track', 'Contact');";
+
+  const trackMetaEvent = (eventName) => {
+    if (typeof window.fbq === 'function') {
+      window.fbq('track', eventName);
+    }
+  };
+
+  const attachWhatsAppClickTracking = () => {
+    const whatsappLinks = document.querySelectorAll('a[href*="wa.me/"], a[href*="api.whatsapp.com/"]');
+
+    whatsappLinks.forEach((link) => {
+      const existingOnclick = link.getAttribute('onclick') || '';
+      if (existingOnclick.includes("fbq('track', 'Contact')")) return;
+
+      const normalized = existingOnclick.trim();
+      const nextOnclick = normalized
+        ? `${normalized}${normalized.endsWith(';') ? '' : ';'} ${META_CONTACT_ONCLICK}`
+        : META_CONTACT_ONCLICK;
+
+      link.setAttribute('onclick', nextOnclick);
+    });
+  };
+
+  attachWhatsAppClickTracking();
 
   const countryDropdowns = document.querySelectorAll('.country-dropdown');
   const countryCodeFallback = [
@@ -424,7 +449,10 @@ document.addEventListener('DOMContentLoaded', () => {
       messageLines.push('', 'Please get back to me. Thank you.');
 
       const whatsappUrl = `https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURIComponent(messageLines.join('\n'))}`;
-      window.location.href = whatsappUrl;
+      trackMetaEvent('Lead');
+      setTimeout(() => {
+        window.location.href = whatsappUrl;
+      }, 150);
     });
   });
 
@@ -521,6 +549,7 @@ document.addEventListener('DOMContentLoaded', () => {
   if (heroLocationText) {
     const locations = [
       { text: 'Around The Globe' },
+      { text: 'The Gulf (GCC)' },
       { text: 'Africa' },
       { text: 'Asia' },
       { text: 'Europe' },
