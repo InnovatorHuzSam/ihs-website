@@ -187,7 +187,14 @@ src="https://www.facebook.com/tr?id=968002505564294&ev=PageView&noscript=1"
                 </button>
                 <div class="country-dropdown-menu" aria-hidden="true">
                   <input type="text" class="form-control country-dropdown-search" placeholder="Search country..." aria-label="Search country" />
-                  <div class="country-dropdown-options"></div>
+                  <div class="country-dropdown-options">
+                    <!-- Ensure United States is the default option -->
+                    <div class="country-option" data-code="+1" data-country="United States">
+                      <img alt="United States flag" class="country-flag-icon" />
+                      <span>United States (+1)</span>
+                    </div>
+                    <!-- Other country options will be dynamically loaded here -->
+                  </div>
                 </div>
               </div>
               <input type="tel" id="contactPhone" class="form-control phone-number-input" placeholder="Phone number" inputmode="tel" autocomplete="tel-national" />
