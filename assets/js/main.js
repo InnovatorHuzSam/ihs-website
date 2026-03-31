@@ -390,6 +390,36 @@ document.addEventListener('DOMContentLoaded', () => {
         return;
       }
 
+      if (form.hasAttribute('netlify') || form.dataset.netlify === 'true') {
+        trackMetaEvent('Lead');
+
+        const formData = new FormData(form);
+        const submitBtn = form.querySelector('button[type="submit"], input[type="submit"]');
+        if (submitBtn) {
+          submitBtn.disabled = true;
+          submitBtn.dataset.originalText = submitBtn.textContent;
+          submitBtn.textContent = 'Sending...';
+        }
+
+        fetch('/', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+          body: new URLSearchParams(formData).toString()
+        })
+          .then(() => {
+            showFormSuccess(form);
+          })
+          .catch(() => {
+            showFormSubmitError(form, 'We could not submit your form right now. Please try again in a moment.');
+            if (submitBtn) {
+              submitBtn.disabled = false;
+              submitBtn.textContent = submitBtn.dataset.originalText || 'Send Message';
+            }
+          });
+
+        return;
+      }
+
       const formTitle =
         form.querySelector('h3')?.textContent.trim() ||
         form.closest('section')?.querySelector('.section-title')?.textContent.trim() ||
@@ -475,6 +505,40 @@ document.addEventListener('DOMContentLoaded', () => {
 
   function isEmail(v) {
     return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(v);
+  }
+
+  function showFormSuccess(form) {
+    const sectionTitle =
+      form.closest('section')?.querySelector('.section-title')?.textContent.trim() ||
+      'your request';
+
+    const successCard = document.createElement('div');
+    successCard.className = 'form-card form-submit-feedback is-success';
+    successCard.setAttribute('role', 'status');
+    successCard.setAttribute('aria-live', 'polite');
+    successCard.innerHTML = [
+      '<div class="form-submit-icon" aria-hidden="true"><i class="fa-solid fa-circle-check"></i></div>',
+      '<h3>Thank you. Your form was submitted successfully.</h3>',
+      `<p>We received your message about ${sectionTitle.toLowerCase()} and our team will contact you soon.</p>`
+    ].join('');
+
+    const formContainer = form.classList.contains('form-card')
+      ? form
+      : (form.closest('.form-card') || form);
+
+    formContainer.replaceWith(successCard);
+    successCard.scrollIntoView({ behavior: 'smooth', block: 'center' });
+  }
+
+  function showFormSubmitError(form, message) {
+    let errorBox = form.querySelector('.form-submit-feedback.is-error');
+    if (!errorBox) {
+      errorBox = document.createElement('div');
+      errorBox.className = 'form-submit-feedback is-error';
+      errorBox.setAttribute('role', 'alert');
+      form.prepend(errorBox);
+    }
+    errorBox.textContent = message;
   }
 
   /* ---------- 6. Active Nav Link ---------- */

@@ -232,18 +232,19 @@ src="https://www.facebook.com/tr?id=968002505564294&ev=PageView&noscript=1"
 
     <div data-aos="fade-up">
       <div class="form-card" style="margin-inline:auto;">
-        <form data-validate>
+        <form data-validate name="careers-application" method="POST" action="/" data-netlify="true" netlify>
+          <input type="hidden" name="form-name" value="careers-application" />
           <div class="form-group">
             <label for="appName">Full Name</label>
-            <input type="text" id="appName" class="form-control" placeholder="Your full name" required />
+            <input type="text" id="appName" name="fullName" class="form-control" placeholder="Your full name" required />
           </div>
           <div class="form-group">
             <label for="appEmail">Email Address</label>
-            <input type="email" id="appEmail" class="form-control" placeholder="you@example.com" />
+            <input type="email" id="appEmail" name="email" class="form-control" placeholder="you@example.com" />
           </div>
           <div class="form-group">
             <label for="appRole">Area of Interest</label>
-            <select id="appRole" class="form-control">
+            <select id="appRole" name="areaOfInterest" class="form-control">
               <option value="">Select an area…</option>
               <option>Language Training</option>
               <option>Digital Skills / AI Training</option>
@@ -256,7 +257,7 @@ src="https://www.facebook.com/tr?id=968002505564294&ev=PageView&noscript=1"
           </div>
           <div class="form-group">
             <label for="appMessage">Tell Us About Yourself</label>
-            <textarea id="appMessage" class="form-control" placeholder="Share your experience, qualifications, and why you'd like to join IHS…"></textarea>
+            <textarea id="appMessage" name="message" class="form-control" placeholder="Share your experience, qualifications, and why you'd like to join IHS…"></textarea>
           </div>
           <button type="submit" class="btn btn-primary btn-lg" style="width:100%;">Submit Application</button>
         </form>

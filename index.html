@@ -576,36 +576,43 @@ src="https://www.facebook.com/tr?id=968002505564294&ev=PageView&noscript=1"
       </div>
 
       <div data-aos="fade-left">
-        <form class="form-card" data-validate>
+        <form class="form-card" data-validate name="home-contact" method="POST" action="/" data-netlify="true" netlify>
+          <input type="hidden" name="form-name" value="home-contact" />
           <div class="form-group">
             <label for="fullName">Full Name</label>
-            <input type="text" id="fullName" class="form-control" placeholder="Your full name" required />
+            <input type="text" id="fullName" name="fullName" class="form-control" placeholder="Your full name" required />
           </div>
           <div class="form-group">
             <label for="phone">Phone / WhatsApp</label>
             <div class="phone-input-group">
               <div class="country-dropdown" data-default-code="+1">
-                <input type="hidden" class="country-code-value" value="+1" />
+                <input type="hidden" class="country-code-value" name="countryCode" value="+1" />
                 <button type="button" class="country-dropdown-toggle" aria-label="Select country code" aria-expanded="false">
-                  <img alt="United States flag" class="country-flag-icon" />
-                  <span class="country-dropdown-label">United States (+1)</span>
+                  <img alt="US/Canada flag" class="country-flag-icon" />
+                  <span class="country-dropdown-label">US/Canada (+1)</span>
                   <i class="fa-solid fa-chevron-down" aria-hidden="true"></i>
                 </button>
                 <div class="country-dropdown-menu" aria-hidden="true">
                   <input type="text" class="form-control country-dropdown-search" placeholder="Search country..." aria-label="Search country" />
-                  <div class="country-dropdown-options"></div>
+                  <div class="country-dropdown-options">
+                    <div class="country-option" data-code="+1" data-country="US/Canada" data-selected="true">
+                      <img alt="US/Canada flag" class="country-flag-icon" />
+                      <span>US/Canada (+1)</span>
+                    </div>
+                    <!-- Other country options will be dynamically loaded here -->
+                  </div>
                 </div>
               </div>
-              <input type="tel" id="phone" class="form-control phone-number-input" placeholder="Phone number" inputmode="tel" autocomplete="tel-national" />
+              <input type="tel" id="phone" name="phone" class="form-control phone-number-input" placeholder="Phone number" inputmode="tel" autocomplete="tel-national" />
             </div>
           </div>
           <div class="form-group">
             <label for="email">Email Address</label>
-            <input type="email" id="email" class="form-control" placeholder="you@example.com" />
+            <input type="email" id="email" name="email" class="form-control" placeholder="you@example.com" />
           </div>
           <div class="form-group">
             <label for="subject">Subject</label>
-            <select id="subject" class="form-control" required>
+            <select id="subject" name="subject" class="form-control" required>
               <option value="">Select a subject…</option>
               <option>Language Training</option>
               <option>Digital & AI Skills</option>
@@ -618,7 +625,7 @@ src="https://www.facebook.com/tr?id=968002505564294&ev=PageView&noscript=1"
           </div>
           <div class="form-group">
             <label for="message">Message</label>
-            <textarea id="message" class="form-control" placeholder="Tell us about your goals or questions…"></textarea>
+            <textarea id="message" name="message" class="form-control" placeholder="Tell us about your goals or questions…"></textarea>
           </div>
           <button type="submit" class="btn btn-primary btn-lg" style="width:100%;">Send Message</button>
         </form>

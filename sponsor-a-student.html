@@ -235,18 +235,19 @@ src="https://www.facebook.com/tr?id=968002505564294&ev=PageView&noscript=1"
         <p><strong><i class="fa-brands fa-whatsapp"></i> WhatsApp:</strong> <a href="https://wa.me/+923217975367" style="color:var(--primary);">+92 321 797 5367</a></p>
       </div>
       <div data-aos="fade-left">
-        <form class="form-card" data-validate>
+        <form class="form-card" data-validate name="sponsor-interest" method="POST" action="/" data-netlify="true" netlify>
+          <input type="hidden" name="form-name" value="sponsor-interest" />
           <div class="form-group">
             <label for="sponsorName">Your Full Name</label>
-            <input type="text" id="sponsorName" class="form-control" placeholder="Your full name" required />
+            <input type="text" id="sponsorName" name="fullName" class="form-control" placeholder="Your full name" required />
           </div>
           <div class="form-group">
             <label for="sponsorEmail">Email Address</label>
-            <input type="email" id="sponsorEmail" class="form-control" placeholder="you@example.com" />
+            <input type="email" id="sponsorEmail" name="email" class="form-control" placeholder="you@example.com" />
           </div>
           <div class="form-group">
             <label for="sponsorType">Sponsorship Type</label>
-            <select id="sponsorType" class="form-control">
+            <select id="sponsorType" name="sponsorshipType" class="form-control">
               <option value="">Select an option…</option>
               <option>Full Sponsorship</option>
               <option>Partial Sponsorship</option>
@@ -256,7 +257,7 @@ src="https://www.facebook.com/tr?id=968002505564294&ev=PageView&noscript=1"
           </div>
           <div class="form-group">
             <label for="sponsorMessage">Message (Optional)</label>
-            <textarea id="sponsorMessage" class="form-control" placeholder="Any specific preferences or questions…"></textarea>
+            <textarea id="sponsorMessage" name="message" class="form-control" placeholder="Any specific preferences or questions…"></textarea>
           </div>
           <button type="submit" class="btn btn-primary btn-lg" style="width:100%;">Submit Interest</button>
         </form>

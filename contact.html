@@ -169,44 +169,44 @@ src="https://www.facebook.com/tr?id=968002505564294&ev=PageView&noscript=1"
 
       <!-- Right: Form -->
       <div data-aos="fade-left">
-        <form class="form-card" data-validate>
+        <form class="form-card" data-validate name="contact-page" method="POST" action="/" data-netlify="true" netlify>
+          <input type="hidden" name="form-name" value="contact-page" />
           <h3 style="margin-bottom:1.5rem;">Send Us a Message</h3>
           <div class="form-group">
             <label for="contactName">Full Name</label>
-            <input type="text" id="contactName" class="form-control" placeholder="Your full name" required />
+            <input type="text" id="contactName" name="fullName" class="form-control" placeholder="Your full name" required />
           </div>
           <div class="form-group">
             <label for="contactPhone">Phone / WhatsApp</label>
             <div class="phone-input-group">
               <div class="country-dropdown" data-default-code="+1">
-                <input type="hidden" class="country-code-value" value="+1" />
+                <input type="hidden" class="country-code-value" name="countryCode" value="+1" />
                 <button type="button" class="country-dropdown-toggle" aria-label="Select country code" aria-expanded="false">
-                  <img alt="United States flag" class="country-flag-icon" />
-                  <span class="country-dropdown-label">United States (+1)</span>
+                  <img alt="US/Canada flag" class="country-flag-icon" />
+                  <span class="country-dropdown-label">US/Canada (+1)</span>
                   <i class="fa-solid fa-chevron-down" aria-hidden="true"></i>
                 </button>
                 <div class="country-dropdown-menu" aria-hidden="true">
                   <input type="text" class="form-control country-dropdown-search" placeholder="Search country..." aria-label="Search country" />
                   <div class="country-dropdown-options">
-                    <!-- Ensure United States is the default option -->
-                    <div class="country-option" data-code="+1" data-country="United States">
-                      <img alt="United States flag" class="country-flag-icon" />
-                      <span>United States (+1)</span>
+                    <div class="country-option" data-code="+1" data-country="US/Canada" data-selected="true">
+                      <img alt="US/Canada flag" class="country-flag-icon" />
+                      <span>US/Canada (+1)</span>
                     </div>
                     <!-- Other country options will be dynamically loaded here -->
                   </div>
                 </div>
               </div>
-              <input type="tel" id="contactPhone" class="form-control phone-number-input" placeholder="Phone number" inputmode="tel" autocomplete="tel-national" />
+              <input type="tel" id="contactPhone" name="phone" class="form-control phone-number-input" placeholder="Phone number" inputmode="tel" autocomplete="tel-national" />
             </div>
           </div>
           <div class="form-group">
             <label for="contactEmail">Email Address</label>
-            <input type="email" id="contactEmail" class="form-control" placeholder="you@example.com" />
+            <input type="email" id="contactEmail" name="email" class="form-control" placeholder="you@example.com" />
           </div>
           <div class="form-group">
             <label for="contactSubject">Subject</label>
-            <select id="contactSubject" class="form-control" required>
+            <select id="contactSubject" name="subject" class="form-control" required>
               <option value="">Select a subject…</option>
               <option>Language Training</option>
               <option>Digital & AI Skills</option>
@@ -221,7 +221,7 @@ src="https://www.facebook.com/tr?id=968002505564294&ev=PageView&noscript=1"
           </div>
           <div class="form-group">
             <label for="contactMessage">Message</label>
-            <textarea id="contactMessage" class="form-control" placeholder="Tell us about your goals, questions, or how we can help…"></textarea>
+            <textarea id="contactMessage" name="message" class="form-control" placeholder="Tell us about your goals, questions, or how we can help…"></textarea>
           </div>
           <button type="submit" class="btn btn-primary btn-lg" style="width:100%;">Send Message</button>
         </form>
