@@ -134,7 +134,7 @@ document.addEventListener('DOMContentLoaded', () => {
   /* ---------- 5. Simple Form Validation ---------- */
   const forms = document.querySelectorAll('form[data-validate]');
   const WHATSAPP_NUMBER = '923217975367';
-  const META_CONTACT_ONCLICK = "fbq('track', 'Contact');";
+  const isWhatsAppHref = (href = '') => /wa\.me\/|api\.whatsapp\.com\//i.test(href);
 
   const trackMetaEvent = (eventName) => {
     if (typeof window.fbq === 'function') {
@@ -142,23 +142,50 @@ document.addEventListener('DOMContentLoaded', () => {
     }
   };
 
-  const attachWhatsAppClickTracking = () => {
-    const whatsappLinks = document.querySelectorAll('a[href*="wa.me/"], a[href*="api.whatsapp.com/"]');
+  const trackGoogleEvent = (eventName, params = {}) => {
+    if (typeof window.gtag === 'function') {
+      window.gtag('event', eventName, params);
+    }
 
-    whatsappLinks.forEach((link) => {
-      const existingOnclick = link.getAttribute('onclick') || '';
-      if (existingOnclick.includes("fbq('track', 'Contact')")) return;
-
-      const normalized = existingOnclick.trim();
-      const nextOnclick = normalized
-        ? `${normalized}${normalized.endsWith(';') ? '' : ';'} ${META_CONTACT_ONCLICK}`
-        : META_CONTACT_ONCLICK;
-
-      link.setAttribute('onclick', nextOnclick);
-    });
+    if (Array.isArray(window.dataLayer)) {
+      window.dataLayer.push({ event: eventName, ...params });
+    }
   };
 
-  attachWhatsAppClickTracking();
+  const trackMetaCustomEvent = (eventName, params = {}) => {
+    if (typeof window.fbq === 'function') {
+      window.fbq('trackCustom', eventName, params);
+    }
+  };
+
+  document.addEventListener('click', (event) => {
+    const target = event.target.closest('a, button, input[type="submit"], input[type="button"]');
+    if (!target) return;
+
+    const href = target.getAttribute('href') || '';
+    const isButtonLike = target.matches('button, input[type="submit"], input[type="button"], a.btn, a[role="button"], a.whatsapp-float, a.whatsapp-option') || isWhatsAppHref(href);
+    if (!isButtonLike) return;
+
+    const buttonText = (target.textContent || target.getAttribute('aria-label') || target.value || 'button').trim();
+    const eventPayload = {
+      button_text: buttonText,
+      button_classes: target.className || '',
+      page_path: window.location.pathname,
+      destination: href
+    };
+
+    trackGoogleEvent('button_click', eventPayload);
+    trackMetaCustomEvent('button_click', eventPayload);
+
+    if (!isWhatsAppHref(href)) return;
+
+    trackGoogleEvent('whatsapp_click', eventPayload);
+    if (Array.isArray(window.dataLayer)) {
+      window.dataLayer.push({ event: 'whatsapp-click', ...eventPayload });
+    }
+    trackMetaEvent('Contact');
+    trackMetaCustomEvent('whatsapp_click', eventPayload);
+  });
 
   const countryDropdowns = document.querySelectorAll('.country-dropdown');
   const countryCodeFallback = [
@@ -392,6 +419,10 @@ document.addEventListener('DOMContentLoaded', () => {
 
       if (form.hasAttribute('netlify') || form.dataset.netlify === 'true') {
         trackMetaEvent('Lead');
+        trackGoogleEvent('generate_lead', {
+          lead_source: 'website_form',
+          page_path: window.location.pathname
+        });
 
         const formData = new FormData(form);
         const submitBtn = form.querySelector('button[type="submit"], input[type="submit"]');
@@ -480,6 +511,10 @@ document.addEventListener('DOMContentLoaded', () => {
 
       const whatsappUrl = `https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURIComponent(messageLines.join('\n'))}`;
       trackMetaEvent('Lead');
+      trackGoogleEvent('generate_lead', {
+        lead_source: 'website_form_whatsapp',
+        page_path: window.location.pathname
+      });
       setTimeout(() => {
         window.location.href = whatsappUrl;
       }, 150);
