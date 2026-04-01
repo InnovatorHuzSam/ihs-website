@@ -2,7 +2,7 @@
 
 # Membership Plans
 
-**Flexible learning plans designed to support your growth at every stage.**
+**Flexible learning plans designed to support your growth at every stage.**woekr
 
 **Our membership plans provide access to structured training, guided support, and flexible learning options. Plans are designed to suit different learning needs, whether you are starting out or looking to advance your skills.**
 sam-ple
