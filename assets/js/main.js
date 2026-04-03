@@ -1,5 +1,5 @@
 /* ============================================================
-   IHS – Innovator HuzSam  |  Main JavaScript
+  IHS - Innovator HuzSam  |  Main JavaScript
    ============================================================ */
 
 /* ---------- 0. Theme Initialization (runs immediately) ---------- */
@@ -133,7 +133,6 @@ document.addEventListener('DOMContentLoaded', () => {
 
   /* ---------- 5. Simple Form Validation ---------- */
   const forms = document.querySelectorAll('form[data-validate]');
-  const WHATSAPP_NUMBER = '923217975367';
   const isWhatsAppHref = (href = '') => /wa\.me\/|api\.whatsapp\.com\//i.test(href);
 
   const trackMetaEvent = (eventName) => {
@@ -417,107 +416,35 @@ document.addEventListener('DOMContentLoaded', () => {
         return;
       }
 
-      if (form.hasAttribute('netlify') || form.dataset.netlify === 'true') {
-        trackMetaEvent('Lead');
-        trackGoogleEvent('generate_lead', {
-          lead_source: 'website_form',
-          page_path: window.location.pathname
-        });
-
-        const formData = new FormData(form);
-        const submitBtn = form.querySelector('button[type="submit"], input[type="submit"]');
-        if (submitBtn) {
-          submitBtn.disabled = true;
-          submitBtn.dataset.originalText = submitBtn.textContent;
-          submitBtn.textContent = 'Sending...';
-        }
-
-        fetch('/', {
-          method: 'POST',
-          headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
-          body: new URLSearchParams(formData).toString()
-        })
-          .then(() => {
-            showFormSuccess(form);
-          })
-          .catch(() => {
-            showFormSubmitError(form, 'We could not submit your form right now. Please try again in a moment.');
-            if (submitBtn) {
-              submitBtn.disabled = false;
-              submitBtn.textContent = submitBtn.dataset.originalText || 'Send Message';
-            }
-          });
-
-        return;
-      }
-
-      const formTitle =
-        form.querySelector('h3')?.textContent.trim() ||
-        form.closest('section')?.querySelector('.section-title')?.textContent.trim() ||
-        'Website Inquiry';
-
-      const fields = Array.from(form.querySelectorAll('input, select, textarea'))
-        .filter((field) => {
-          if (field.disabled) return false;
-          if (field.tagName === 'INPUT' && ['hidden', 'submit', 'button', 'reset', 'file'].includes(field.type)) return false;
-          if (field.type === 'radio' && !field.checked) return false;
-          return true;
-        })
-        .map((field) => {
-          if (field.classList.contains('phone-number-input')) {
-            const countryCode = field.closest('.phone-input-group')?.querySelector('.country-code-value')?.value?.trim() || '';
-            const phoneNumber = field.value.trim();
-            if (!phoneNumber) return null;
-
-            const groupLabel = field.closest('.form-group')?.querySelector('label')?.textContent.trim() || 'Phone / WhatsApp';
-            const fullPhone = `${countryCode} ${phoneNumber}`.trim();
-            return { label: groupLabel, value: fullPhone };
-          }
-
-          const groupLabel = field.closest('.form-group')?.querySelector('label')?.textContent.trim();
-          const byForLabel = field.id
-            ? form.querySelector(`label[for="${field.id}"]`)?.textContent.trim()
-            : '';
-          const label = byForLabel || groupLabel || field.name || field.id || 'Field';
-
-          let value = '';
-          if (field.tagName === 'SELECT') {
-            const selected = field.options[field.selectedIndex];
-            value = selected ? selected.textContent.trim() : '';
-            if (!field.value) value = '';
-          } else if (field.type === 'checkbox') {
-            value = field.checked ? 'Yes' : 'No';
-          } else {
-            value = field.value.trim();
-          }
-
-          return { label, value };
-        })
-        .filter((entry) => entry && entry.value);
-
-      const messageLines = [
-        'Hello Innovator HuzSam,',
-        '',
-        `New inquiry from website form: ${formTitle}`,
-        '',
-        'Submitted details:'
-      ];
-
-      fields.forEach((entry) => {
-        messageLines.push(`- ${entry.label}: ${entry.value}`);
-      });
-
-      messageLines.push('', 'Please get back to me. Thank you.');
-
-      const whatsappUrl = `https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURIComponent(messageLines.join('\n'))}`;
       trackMetaEvent('Lead');
       trackGoogleEvent('generate_lead', {
-        lead_source: 'website_form_whatsapp',
+        lead_source: 'website_form',
         page_path: window.location.pathname
       });
-      setTimeout(() => {
-        window.location.href = whatsappUrl;
-      }, 150);
+
+      const formData = new FormData(form);
+      const submitBtn = form.querySelector('button[type="submit"], input[type="submit"]');
+      if (submitBtn) {
+        submitBtn.disabled = true;
+        submitBtn.dataset.originalText = submitBtn.textContent;
+        submitBtn.textContent = 'Sending...';
+      }
+
+      fetch('/', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+        body: new URLSearchParams(formData).toString()
+      })
+        .then(() => {
+          showFormSuccess(form);
+        })
+        .catch(() => {
+          showFormSubmitError(form, 'We could not submit your form right now. Please try again in a moment.');
+          if (submitBtn) {
+            submitBtn.disabled = false;
+            submitBtn.textContent = submitBtn.dataset.originalText || 'Send Message';
+          }
+        });
     });
   });
 
